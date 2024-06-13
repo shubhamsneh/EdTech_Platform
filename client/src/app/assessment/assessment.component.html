@@ -1,0 +1,49 @@
+<div class="container-wrapper">
+  <div class="assessment-container">
+    <h2>Lets Begin!</h2>
+    <form (ngSubmit)="submitAssessment()">
+      <div class="question">
+        <label for="q1">1. What subject courses are you looking for? </label><br>
+        <input type="text" id="q1" name="question1" placeholder="Your answer" [(ngModel)]="answers.question1" required>
+      </div><br>
+
+      <div class="question">
+        <label for="q3">2. Which type of course are you interested in?</label><br>
+        <div class="radio-group">
+          <input type="radio" id="free" name="course-type" value="free" (change)="toggleFreeCourse()" [(ngModel)]="answers.courseType">
+          <label for="free">Free</label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="paid" name="course-type" value="paid" (change)="togglePaidCourse()">
+          <label for="paid">Paid</label>
+        </div>
+        <div id="budget-info" *ngIf="answers.courseType === 'paid'">
+          <div class="dropdown-content">
+            <input type="number" id="budget" name="budget" step="1" min="1" placeholder="Enter your budget" [(ngModel)]="answers.budget">
+          </div>
+        </div>
+      </div><br>
+
+      <div class="question">
+        <label for="q2">3. How many hours per week can you commit to studying on our website?</label>
+        <div class="slider">
+          <input type="range" id="q2" name="question2" min="1" max="60" step="1" (input)="onSliderChange($event)" [(ngModel)]="answers.hours">
+          <span id="slider-value">{{ answers.hours }} hours</span>
+        </div>
+      </div><br>
+
+      <div class="question">
+        <label for="q4">4. Experience level?</label><br>
+        <label *ngFor="let exp of experienceLevels">
+          <input type="radio" name="experience" [value]="exp" [(ngModel)]="answers.experience">
+          {{ exp }}
+        </label><br>
+      </div><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div class="image-container">
+    <img src="../../assets/assessment.jpg" alt="Image Description" />
+  </div>
+</div>

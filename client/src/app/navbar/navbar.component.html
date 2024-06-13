@@ -1,0 +1,77 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><span class="material-icons">school</span><a class="navbar-brand" [routerLink]="['/home']">LEARNIFY</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      
+      <!-- <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']" >Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li (click)="select('login')" [ngClass]="{active: isActive('login')}" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']" >Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+      </li> -->
+
+      <li *ngFor="let n of list" (click)="select(n)" [ngClass]="{active: isActive(n)}" mdbWavesEffect [routerLink]="['/'+n.toLowerCase()]" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>{{n}}</a>
+      </li>
+      
+
+      <li *ngIf="isLoggedIn" [routerLink]="['/courses']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Courses</a>
+      </li>
+
+      <li *ngIf="isLoggedIn" [routerLink]="['/recommend']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Recommended</a>
+      </li>
+      
+      <!-- Show "Login" link when not logged in -->
+      <li *ngIf="!isLoggedIn" (click)="select('Login')" [ngClass]="{ active: isActive('Login') }" mdbWavesEffect [routerLink]="['/login']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Login</a>
+      </li>
+    
+
+      
+        
+        
+      
+        
+    </ul>
+
+    <!-- <a class="nav-link waves-light" >
+      <img
+        [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'"
+        alt="avatar"
+        class="avatar-img"
+      />
+
+    </a> -->
+    <!-- Profile dropdown -->
+    
+    <div *ngIf="isLoggedIn" class="nav-item dropdown" dropdown>
+      <button dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
+        <img [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'" class="avatar-img" alt="Avatar">
+      </button>
+      <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+        <a class="dropdown-item" [routerLink]="['/profile']">
+          <i class="fa fa-user"></i> Profile
+        </a>
+        <div class="divider dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()">
+          <i class="fa fa-power-off"></i> Logout
+        </a>
+      </div>
+    </div>
+    
+
+  </links>
+</mdb-navbar>
+<!--/.Navbar-->
