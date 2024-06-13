@@ -1,4 +1,4 @@
-# Learnify
+# EdTech_Platform
 
 Learnify is a comprehensive course recommendation platform designed to help users achieve their learning goals efficiently. The platform, built with Angular and Node.js, incorporates AI and data science functionalities using Python and Flask. PostgreSQL is employed as the database, and the entire application is containerized using Docker. For those interested in container orchestration, Kubernetes manifests are also provided.
 
